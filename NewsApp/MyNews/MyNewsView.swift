@@ -8,10 +8,12 @@
 import UIKit
 
 class MyNewsView: UIView {
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         backgroundColor = .orange
+        
     }
     
     required init?(coder: NSCoder) {

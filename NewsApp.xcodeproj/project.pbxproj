@@ -21,6 +21,8 @@
 		84C466622AF92DB0003DF1CA /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C466612AF92DB0003DF1CA /* SavedView.swift */; };
 		84C466642AF92DCB003DF1CA /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C466632AF92DCB003DF1CA /* SettingViewController.swift */; };
 		84C466662AF92DE0003DF1CA /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C466652AF92DE0003DF1CA /* SettingView.swift */; };
+		84C466682AF96C6A003DF1CA /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C466672AF96C6A003DF1CA /* Product.swift */; };
+		84C4666A2AF96CFE003DF1CA /* NewsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C466692AF96CFE003DF1CA /* NewsListTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		84C466612AF92DB0003DF1CA /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
 		84C466632AF92DCB003DF1CA /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		84C466652AF92DE0003DF1CA /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		84C466672AF96C6A003DF1CA /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		84C466692AF96CFE003DF1CA /* NewsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,7 @@
 				84C466482AF8ED8F003DF1CA /* Info.plist */,
 				84C466532AF92660003DF1CA /* Colors.swift */,
 				84C466552AF927C1003DF1CA /* MainTabBarController.swift */,
+				84C466672AF96C6A003DF1CA /* Product.swift */,
 			);
 			path = NewsApp;
 			sourceTree = "<group>";
@@ -92,6 +97,7 @@
 			children = (
 				84C4664F2AF8F326003DF1CA /* NewsListViewController.swift */,
 				84C466512AF92166003DF1CA /* NewsListView.swift */,
+				84C466692AF96CFE003DF1CA /* NewsListTableViewCell.swift */,
 			);
 			path = NewsList;
 			sourceTree = "<group>";
@@ -195,6 +201,7 @@
 			files = (
 				84C466542AF92660003DF1CA /* Colors.swift in Sources */,
 				84C466642AF92DCB003DF1CA /* SettingViewController.swift in Sources */,
+				84C4666A2AF96CFE003DF1CA /* NewsListTableViewCell.swift in Sources */,
 				84C4665E2AF92D7D003DF1CA /* MyNewsView.swift in Sources */,
 				84C466502AF8F326003DF1CA /* NewsListViewController.swift in Sources */,
 				84C466602AF92D99003DF1CA /* SavedViewController.swift in Sources */,
@@ -205,6 +212,7 @@
 				84C466662AF92DE0003DF1CA /* SettingView.swift in Sources */,
 				84C4663B2AF8ED8C003DF1CA /* AppDelegate.swift in Sources */,
 				84C4663D2AF8ED8C003DF1CA /* SceneDelegate.swift in Sources */,
+				84C466682AF96C6A003DF1CA /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

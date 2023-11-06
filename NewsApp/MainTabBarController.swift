@@ -9,50 +9,56 @@ import UIKit
 
 final class MainTabBarController: UITabBarController {
     
-    private var newsListViewController: UIViewController {
+    private var newsListViewController: UINavigationController {
         let vc = NewsListViewController()
-        vc.tabBarItem = UITabBarItem(
-            title: "News",
+        let navigationController = UINavigationController(rootViewController: vc)
+        navigationController.tabBarItem = UITabBarItem(
+            title: "Новости",
             image: UIImage(systemName: "newspaper"),
             selectedImage: UIImage(systemName: "newspaper.fill")
         )
-        return vc
+        return navigationController
     }
     
-    private var myNewsViewController: UIViewController {
+    private var myNewsViewController: UINavigationController {
         let vc = MyNewsViewController()
-        vc.tabBarItem = UITabBarItem(
-            title: "My News",
+        let navigationController = UINavigationController(rootViewController: vc)
+        navigationController.tabBarItem = UITabBarItem(
+            title: "Мои новости",
             image: UIImage(systemName: "list.bullet.rectangle.portrait"),
             selectedImage: UIImage(systemName: "list.bullet.rectangle.portrait.fill")
         )
-        return vc
+        return navigationController
     }
     
-    private var savedViewController: UIViewController {
+    private var savedViewController: UINavigationController {
         let vc = SavedViewController()
-        vc.tabBarItem = UITabBarItem(
-            title: "Saved",
+        let navigationController = UINavigationController(rootViewController: vc)
+        navigationController.tabBarItem = UITabBarItem(
+            title: "Сохраненные",
             image: UIImage(systemName: "square.and.arrow.down.on.square"),
             selectedImage: UIImage(systemName: "square.and.arrow.down.on.square.fill")
         )
-        return vc
+        return navigationController
     }
     
-    private var settingViewController: UIViewController {
+    private var settingViewController: UINavigationController {
         let vc = SettingViewController()
-        vc.tabBarItem = UITabBarItem(
-            title: "Setting",
+        let navigationController = UINavigationController(rootViewController: vc)
+        navigationController.tabBarItem = UITabBarItem(
+            title: "Настройки",
             image: UIImage(systemName: "person.circle"),
             selectedImage: UIImage(systemName: "person.circle.fill")
         )
-        return vc
+        return navigationController
     }
 
     init() {
         super.init(nibName: nil, bundle: nil)
                    
         viewControllers = [newsListViewController, myNewsViewController, savedViewController, settingViewController]
+        
+        tabBar.tintColor = .red
     }
     
     required init?(coder: NSCoder) {

@@ -17,6 +17,8 @@ class MyNewsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Мои новости"
 
     }
 }

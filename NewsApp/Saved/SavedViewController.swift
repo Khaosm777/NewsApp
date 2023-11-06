@@ -17,6 +17,8 @@ class SavedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Сохраненные"
 
     }
 }
