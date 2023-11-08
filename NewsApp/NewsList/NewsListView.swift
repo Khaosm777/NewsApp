@@ -16,7 +16,7 @@ class NewsListView: UIView {
     Product(title: "Нихлой", image: UIImage(named: "logo")!)
     ]
     
-    var tableView: UITableView = {
+    let tableView: UITableView = {
         let tv = UITableView()
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.rowHeight = 100
@@ -65,6 +65,8 @@ extension NewsListView: UITableViewDataSource {
         
         let item = items[indexPath.row]
         cell.configure(image: item.image, title: item.title)
+        
+        cell.selectionStyle = .none
         
         return cell
     }

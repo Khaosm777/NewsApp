@@ -16,7 +16,10 @@ final class MainTabBarController: UITabBarController {
             title: "Новости",
             image: UIImage(systemName: "newspaper"),
             selectedImage: UIImage(systemName: "newspaper.fill")
-        )
+            )
+        
+        navigationController.navigationBar.tintColor = .black
+        
         return navigationController
     }
     
@@ -28,6 +31,9 @@ final class MainTabBarController: UITabBarController {
             image: UIImage(systemName: "list.bullet.rectangle.portrait"),
             selectedImage: UIImage(systemName: "list.bullet.rectangle.portrait.fill")
         )
+        
+        navigationController.navigationBar.tintColor = .black
+
         return navigationController
     }
     
@@ -39,6 +45,9 @@ final class MainTabBarController: UITabBarController {
             image: UIImage(systemName: "square.and.arrow.down.on.square"),
             selectedImage: UIImage(systemName: "square.and.arrow.down.on.square.fill")
         )
+        
+        navigationController.navigationBar.tintColor = .black
+
         return navigationController
     }
     
@@ -50,6 +59,9 @@ final class MainTabBarController: UITabBarController {
             image: UIImage(systemName: "person.circle"),
             selectedImage: UIImage(systemName: "person.circle.fill")
         )
+        navigationController.navigationBar.tintColor = .black
+
+        
         return navigationController
     }
 
@@ -59,6 +71,7 @@ final class MainTabBarController: UITabBarController {
         viewControllers = [newsListViewController, myNewsViewController, savedViewController, settingViewController]
         
         tabBar.tintColor = .red
+        tabBar.backgroundColor = .white
     }
     
     required init?(coder: NSCoder) {
