@@ -10,9 +10,9 @@ import UIKit
 final class NewsInfoViewController: UIViewController {
     
     private let mainView = NewsInfoView()
-    private let item: Product
+    private let item: Article
     
-    init(item: Product) {
+    init(item: Article) {
         self.item = item
         
         super.init(nibName: nil, bundle: nil)
@@ -29,6 +29,6 @@ final class NewsInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        mainView.configure(image: item.image, title: item.title)
+        mainView.configure(image: UIImage(), title: item.title, discription: item.description)
     }
 }

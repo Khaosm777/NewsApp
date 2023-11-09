@@ -36,16 +36,16 @@ class NewsInfoView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
         label.text = "Жили-были дед со старухой"
+        label.font = .systemFont(ofSize: 20)
         return label
     }()
     
     private let textView: UITextView = {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.font = .systemFont(ofSize: 16)
         textView.backgroundColor = .clear
         textView.isEditable = false
-        textView.text = "kewmcjoiweniconwericerwicmiermciremciremcirmcirmcirmirmcirmcirmcirmcirmcirmcirmcierkmcikemkcmrfedlkjv afkjed vkja dfj dafjv dfkja vkjf avj akj vkja jkvjker vjkerjnvjrenvjrnvjernvjernvjrnvjrnvjrnvrjvrd"
+        textView.font = UIFont(name: "Chango-Regular", size: 14)
         return textView
     }()
     
@@ -116,9 +116,16 @@ class NewsInfoView: UIView {
         textView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
     }
 
-    func configure(image: UIImage, title: String) {
+    func configure(image: UIImage, title: String?, discription: String?) {
         imageView.image = image
         label.text = title
+        textView.text = discription
         
     }
+    
+//    func updateDiscription(_ text: String?) {
+//        guard let text = text else { return }
+//        
+//        
+//    }
 }

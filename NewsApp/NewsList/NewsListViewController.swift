@@ -31,4 +31,13 @@ extension NewsListViewController: UITableViewDelegate {
         
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        if indexPath.row == mainView.items.count - 1 {
+            mainView.setupViewIndicator()
+            mainView.page += 1
+            mainView.fetchData()
+        }
+    }
 }

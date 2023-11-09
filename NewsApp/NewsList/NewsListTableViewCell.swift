@@ -15,6 +15,7 @@ final class NewsListTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .boldSystemFont(ofSize: 16)
+        label.numberOfLines = 2 
         return label
     }()
     
@@ -58,7 +59,7 @@ final class NewsListTableViewCell: UITableViewCell {
         label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32).isActive = true
     }
     
-    func configure(image: UIImage, title: String) {
+    func configure(image: UIImage, title: String?) {
         productImageView.image = image
         label.text = title
     }
