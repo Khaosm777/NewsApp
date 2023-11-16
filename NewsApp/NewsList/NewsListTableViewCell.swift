@@ -19,6 +19,15 @@ final class NewsListTableViewCell: UITableViewCell {
         return label
     }()
     
+    private let labelDate: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .boldSystemFont(ofSize: 12)
+        label.text = "12.10.1994"
+        label.textColor = .systemGray2
+        return label
+    }()
+    
     private let productImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -37,9 +46,17 @@ final class NewsListTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        productImageView.image = nil
+        label.text = nil
+    }
+    
     private func setupLayour() {
         setupImage()
         setupLabel()
+        setupLabelDate()
     }
     
     private func setupImage() {
@@ -47,8 +64,8 @@ final class NewsListTableViewCell: UITableViewCell {
         
         productImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         productImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32).isActive = true
-        productImageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        productImageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        productImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        productImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
     
     private func setupLabel() {
@@ -59,8 +76,15 @@ final class NewsListTableViewCell: UITableViewCell {
         label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32).isActive = true
     }
     
-    func configure(image: UIImage, title: String?) {
+    private func setupLabelDate() {
+        contentView.addSubview(labelDate)
+        
+        labelDate.bottomAnchor.constraint(equalTo: productImageView.bottomAnchor).isActive = true
+        labelDate.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 16).isActive = true
+    }
+    
+    func configure(arcticle: Article, image: UIImage) {
         productImageView.image = image
-        label.text = title
+        label.text = arcticle.title
     }
 }

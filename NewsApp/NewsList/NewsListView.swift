@@ -9,14 +9,17 @@ import UIKit
 
 final class NewsListView: UIView {
     
+    let imagesProvider = ImagesProvider()
+
+    lazy var networkService = ArticleListNetworkService(imagesProvider: imagesProvider)
+ 
     var items: [Article] = []
-    let networkService = ArticleListNetworkService()
     var page = 1
     
     let tableView: UITableView = {
         let tv = UITableView()
         tv.translatesAutoresizingMaskIntoConstraints = false
-        tv.rowHeight = 100
+        tv.rowHeight = 120
         return tv
     }()
     
@@ -107,7 +110,8 @@ extension NewsListView: UITableViewDataSource {
         }
         
         let item = items[indexPath.row]
-        cell.configure(image: UIImage(), title: item.title)
+        let image = imagesProvider.image(for: item.urlToImage)
+        cell.configure(arcticle: item, image: image)
         
         cell.selectionStyle = .none
         

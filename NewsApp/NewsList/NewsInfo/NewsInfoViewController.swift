@@ -6,14 +6,17 @@
 //
 
 import UIKit
+import SafariServices
 
 final class NewsInfoViewController: UIViewController {
     
     private let mainView = NewsInfoView()
     private let item: Article
+    private let image: UIImage
     
-    init(item: Article) {
+    init(item: Article, image: UIImage) {
         self.item = item
+        self.image = image
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -29,6 +32,15 @@ final class NewsInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        mainView.configure(image: UIImage(), title: item.title, discription: item.description)
+        mainView.configure(image: image, title: item.title, discription: item.description)
+        
+        mainView.button.addTarget(self, action: #selector(ButtonTapped), for: .touchDown)
+    }
+    
+    @objc
+    private func ButtonTapped() {
+        let vc = SFSafariViewController(url: item.url)
+        
+        present(vc, animated: true)
     }
 }
