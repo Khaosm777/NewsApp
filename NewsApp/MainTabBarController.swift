@@ -10,7 +10,7 @@ import UIKit
 final class MainTabBarController: UITabBarController {
     
     private var newsListViewController: UINavigationController {
-        let vc = NewsListViewController()
+        let vc = ArcticleViewControllerProvider.arcticleViewControllerProvider
         let navigationController = UINavigationController(rootViewController: vc)
         navigationController.tabBarItem = UITabBarItem(
             title: "Новости",

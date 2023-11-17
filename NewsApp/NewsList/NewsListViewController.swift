@@ -28,7 +28,7 @@ extension NewsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = mainView.items[indexPath.row]
         let image = mainView.imagesProvider.image(for: item.urlToImage)
-        let vc = NewsInfoViewController(item: item, image: image)
+        let vc = NewsInfoViewController(item: item, image: image ?? UIImage())
         
         navigationController?.pushViewController(vc, animated: true)
     }

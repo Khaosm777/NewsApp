@@ -10,7 +10,9 @@ import UIKit
 struct Article {
     let title: String
     let description: String
+    let content: String
     let author: String
     let urlToImage: URL
     let url: URL
+    let publishedAt: String?
 }

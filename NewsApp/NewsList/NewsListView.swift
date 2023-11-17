@@ -10,8 +10,7 @@ import UIKit
 final class NewsListView: UIView {
     
     let imagesProvider = ImagesProvider()
-
-    lazy var networkService = ArticleListNetworkService(imagesProvider: imagesProvider)
+    let networkService = ArticleListNetworkService()
  
     var items: [Article] = []
     var page = 1
@@ -94,6 +93,17 @@ final class NewsListView: UIView {
         
         tableView.tableFooterView = view
     }
+    
+    private func publishDate(for dateResult: String?) -> String? {
+        guard let dataResult = dateResult else { return nil }
+        
+        guard let date = ISO8601DateFormatter().date(from: dataResult) else { return nil }
+        
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        
+        return formatter.string(from: date)
+   }
 }
 
 extension NewsListView: UITableViewDataSource {
@@ -110,8 +120,9 @@ extension NewsListView: UITableViewDataSource {
         }
         
         let item = items[indexPath.row]
-        let image = imagesProvider.image(for: item.urlToImage)
-        cell.configure(arcticle: item, image: image)
+        let publushedDate = publishDate(for: item.publishedAt)
+        
+        cell.configure(arcticle: item, publishedAt: publushedDate, imagesProvider: imagesProvider)
         
         cell.selectionStyle = .none
         

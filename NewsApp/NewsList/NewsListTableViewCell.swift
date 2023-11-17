@@ -15,7 +15,7 @@ final class NewsListTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .boldSystemFont(ofSize: 16)
-        label.numberOfLines = 2 
+        label.numberOfLines = 3
         return label
     }()
     
@@ -83,8 +83,14 @@ final class NewsListTableViewCell: UITableViewCell {
         labelDate.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 16).isActive = true
     }
     
-    func configure(arcticle: Article, image: UIImage) {
-        productImageView.image = image
+    func configure(arcticle: Article, publishedAt: String?, imagesProvider: ImagesProvider) {
         label.text = arcticle.title
+        labelDate.text = publishedAt
+        
+        imagesProvider.image(for: arcticle.urlToImage) { [weak self] image in
+            DispatchQueue.main.async {
+                self?.productImageView.image = image
+            }
+        }
     }
 }

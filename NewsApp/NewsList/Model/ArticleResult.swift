@@ -14,4 +14,5 @@ struct ArticleResult: Decodable {
     let content: String?
     let urlToImage: URL?
     let url: URL?
+    let publishedAt: String?
 }

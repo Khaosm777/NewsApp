@@ -156,9 +156,10 @@ class NewsInfoView: UIView {
         button.widthAnchor.constraint(equalToConstant: 190).isActive = true
     }
     
-    func configure(image: UIImage, title: String, discription: String) {
+    func configure(image: UIImage, title: String, discription: String, publishedAt: String?) {
         imageView.image = image
         labelTitle.text = title
         textView.text = discription
+        labelDate.text = publishedAt
     }
 }

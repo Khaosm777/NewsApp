@@ -32,9 +32,22 @@ final class NewsInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        mainView.configure(image: image, title: item.title, discription: item.description)
+        mainView.configure(image: image, title: item.title, discription: item.description, publishedAt: publishDate(for: item.publishedAt))
         
         mainView.button.addTarget(self, action: #selector(ButtonTapped), for: .touchDown)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "square.and.arrow.up"),
+            style: .plain,
+            target: self,
+            action: #selector(shareButtonTapped)
+        )
+    }
+    
+    @objc
+    func shareButtonTapped() {
+        let vc = UIActivityViewController(activityItems: ["one"], applicationActivities: nil)
+        present(vc, animated: true)
     }
     
     @objc
@@ -42,5 +55,18 @@ final class NewsInfoViewController: UIViewController {
         let vc = SFSafariViewController(url: item.url)
         
         present(vc, animated: true)
+    }
+    
+    private func publishDate(for dateResult: String?) -> String? {
+        guard let dataResult = dateResult else { return nil }
+        
+        let formater = DateFormatter()
+        formater.dateFormat = "yyyy-MM-dd'T'hh:mm:ssZ"
+        
+        guard let date = formater.date(from: dataResult) else { return nil}
+        
+        formater.dateStyle = .medium
+        
+        return formater.string(from: date)
     }
 }

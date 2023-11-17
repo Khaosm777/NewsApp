@@ -10,16 +10,10 @@
 import Foundation
 
 final class ArticleListNetworkService {
-    
-    private let imagesProvider: ImagesProvider
-    
+        
     private var page = 1
     
     private var urlString: String { "https://newsapi.org/v2/everything?q=tesla&sortBy=publishedAt&apiKey=ea2d8b2408b447209b36ef5747df12e2&language=ru&page=\(page)"
-    }
-    
-    init(imagesProvider: ImagesProvider) {
-        self.imagesProvider = imagesProvider
     }
     
     func fetchData(page: Int, completion: @escaping ([Article]) -> Void) {
@@ -46,9 +40,7 @@ final class ArticleListNetworkService {
             }
             
             let arcticles = self.convert(from: result.articles)
-            
-            self.imagesProvider.prefetchImages(urls: arcticles.map { $0.urlToImage})
-            
+                        
             completion(arcticles)
         }.resume()
     }
@@ -61,9 +53,11 @@ final class ArticleListNetworkService {
                let description = item.description,
                let author = item.author,
                let urlToImage = item.urlToImage,
-               let url = item.url
+               let url = item.url,
+               let publishedAt = item.publishedAt,
+               let content = item.content
             {
-                arcticles.append(Article(title: title, description: description, author: author, urlToImage: urlToImage, url: url))
+                arcticles.append(Article(title: title, description: description,content: content, author: author, urlToImage: urlToImage, url: url, publishedAt: publishedAt ))
             }
         }
         return arcticles
