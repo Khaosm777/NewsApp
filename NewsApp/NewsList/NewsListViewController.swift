@@ -27,14 +27,15 @@ final class NewsListViewController: UIViewController {
 extension NewsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = mainView.items[indexPath.row]
-        let vc = NewsInfoViewController(item: item)
+        let image = mainView.imagesProvider.image(for: item.urlToImage)
+        let vc = NewsInfoViewController(item: item, image: image)
         
         navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        if indexPath.row == mainView.items.count - 1 {
+        if indexPath.row == mainView.items.count - 5 {
             mainView.setupViewIndicator()
             mainView.page += 1
             mainView.fetchData()

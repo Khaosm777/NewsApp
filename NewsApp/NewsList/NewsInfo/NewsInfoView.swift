@@ -24,19 +24,22 @@ class NewsInfoView: UIView {
     private let imageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.image = UIImage(named: "logo")
-        iv.layer.cornerRadius = 8
-        iv.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+//        iv.layer.cornerRadius = 24
+//        iv.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         iv.clipsToBounds = true
         return iv
     }()
     
-    private let label: UILabel = {
+    private let labelTitle: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
-        label.text = "Жили-были дед со старухой"
-        label.font = .systemFont(ofSize: 20)
+        label.font = .boldSystemFont(ofSize: 20)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.backgroundColor = .systemGray4
+        label.layer.cornerRadius = 15
+        label.clipsToBounds = true
         return label
     }()
     
@@ -45,8 +48,28 @@ class NewsInfoView: UIView {
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.backgroundColor = .clear
         textView.isEditable = false
-        textView.font = UIFont(name: "Chango-Regular", size: 14)
+        textView.font = .systemFont(ofSize: 16)
         return textView
+    }()
+    
+    private let labelDate: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 14)
+        label.textColor = .systemGray
+        label.text = "01.01.1994"
+        return label
+    }()
+    
+    let button: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Перейти к источнику", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .systemGray4
+        button.titleLabel?.font = .boldSystemFont(ofSize: 17)
+        button.layer.cornerRadius = 10
+        return button
     }()
     
     override init(frame: CGRect) {
@@ -65,8 +88,10 @@ class NewsInfoView: UIView {
         setupScrollView()
         setupContentView()
         setupImageView()
+        setupLabelDate()
         setupLabel()
         setupTextView()
+        setupButton()
     }
     
     private func setupScrollView() {
@@ -87,45 +112,53 @@ class NewsInfoView: UIView {
         contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
         contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor).isActive = true
         contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-
+        
     }
     
     private func setupImageView() {
         contentView.addSubview(imageView)
-
+        
         imageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 350).isActive = true
     }
     
-    private func setupLabel() {
-        contentView.addSubview(label)
+    private func setupLabelDate() {
+        contentView.addSubview(labelDate)
         
-        label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 32).isActive = true
-        label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 32).isActive = true
-        label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -32).isActive = true
+        labelDate.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 4).isActive = true
+        labelDate.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: -10).isActive = true
+    }
+    
+    private func setupLabel() {
+        contentView.addSubview(labelTitle)
+        
+        labelTitle.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 32).isActive = true
+        labelTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 20).isActive = true
+        labelTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -20).isActive = true
     }
     
     private func setupTextView() {
         contentView.addSubview(textView)
         
-        textView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 32).isActive = true
-        textView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32).isActive = true
-        textView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32).isActive = true
+        textView.topAnchor.constraint(equalTo: labelTitle.bottomAnchor, constant: 32).isActive = true
+        textView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        textView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         textView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
     }
-
-    func configure(image: UIImage, title: String?, discription: String?) {
-        imageView.image = image
-        label.text = title
-        textView.text = discription
+    
+    private func setupButton() {
+        contentView.addSubview(button)
         
+        button.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32).isActive = true
+        button.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 190).isActive = true
     }
     
-//    func updateDiscription(_ text: String?) {
-//        guard let text = text else { return }
-//        
-//        
-//    }
+    func configure(image: UIImage, title: String, discription: String) {
+        imageView.image = image
+        labelTitle.text = title
+        textView.text = discription
+    }
 }
