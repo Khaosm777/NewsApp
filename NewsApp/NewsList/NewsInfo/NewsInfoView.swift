@@ -9,6 +9,12 @@ import UIKit
 
 class NewsInfoView: UIView {
     
+    var isFavorite = false {
+        didSet {
+            updateAddToFavoritesButton()
+        }
+    }
+    
     private let scrollView: UIScrollView = {
         let sv = UIScrollView()
         sv.translatesAutoresizingMaskIntoConstraints = false
@@ -72,6 +78,14 @@ class NewsInfoView: UIView {
         return button
     }()
     
+    let buttonSave: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setBackgroundImage(UIImage(systemName: "suit.heart"), for: .normal)
+        button.tintColor = .red
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -92,6 +106,7 @@ class NewsInfoView: UIView {
         setupLabel()
         setupTextView()
         setupButton()
+        setupButtonSave()
     }
     
     private func setupScrollView() {
@@ -156,10 +171,28 @@ class NewsInfoView: UIView {
         button.widthAnchor.constraint(equalToConstant: 190).isActive = true
     }
     
+    private func setupButtonSave() {
+        contentView.addSubview(buttonSave)
+        
+        buttonSave.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: -12).isActive = true
+        buttonSave.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -12).isActive = true
+        buttonSave.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        buttonSave.heightAnchor.constraint(equalToConstant: 40).isActive = true
+    }
+    func updateAddToFavoritesButton() {
+        if isFavorite {
+            buttonSave.setBackgroundImage(UIImage(systemName: "suit.heart.fill"), for: .normal)
+        } else {
+            buttonSave.setBackgroundImage(UIImage(systemName: "suit.heart"), for: .normal)
+        }
+    }
+    
     func configure(image: UIImage, title: String, discription: String, publishedAt: String?) {
         imageView.image = image
         labelTitle.text = title
         textView.text = discription
         labelDate.text = publishedAt
+        
+        updateAddToFavoritesButton()
     }
 }

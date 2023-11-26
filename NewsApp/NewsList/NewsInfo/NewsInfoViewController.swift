@@ -42,6 +42,17 @@ final class NewsInfoViewController: UIViewController {
             target: self,
             action: #selector(shareButtonTapped)
         )
+        
+        mainView.isFavorite = FavoriteStorage.shared.contains(item)
+        
+        mainView.buttonSave.addTarget(self, action: #selector(saveTapped), for: .touchDown)
+    }
+    
+    @objc
+    func saveTapped() {
+        mainView.isFavorite = !mainView.isFavorite
+        mainView.updateAddToFavoritesButton()
+        FavoriteStorage.shared.handle(item)
     }
     
     @objc

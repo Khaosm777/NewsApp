@@ -10,14 +10,13 @@
 import Foundation
 
 final class ArticleListNetworkService {
-        
-    private var page = 1
     
-    private var urlString: String { "https://newsapi.org/v2/everything?q=tesla&sortBy=publishedAt&apiKey=ea2d8b2408b447209b36ef5747df12e2&language=ru&page=\(page)"
-    }
-    
-    func fetchData(page: Int, completion: @escaping ([Article]) -> Void) {
-        self.page = page
+    func fetchData(
+        q: String,
+        page: Int,
+        completion: @escaping ([Article]) -> Void
+    ) {
+        let urlString = urlString(q: q, page: page)
         
         guard let url = URL(string: urlString) else { return }
         
@@ -43,6 +42,18 @@ final class ArticleListNetworkService {
                         
             completion(arcticles)
         }.resume()
+    }
+    
+    private func urlString(q: String?, page: Int) -> String {
+        var baseString = "https://newsapi.org/v2/everything?sortBy=popularity&apiKey=ea2d8b2408b447209b36ef5747df12e2&language=ru"
+        
+        if let q = q {
+            baseString += "&q=\(q)"
+        }
+        
+        baseString += "&page=\(page)"
+        
+        return baseString
     }
     
     private func convert(from result: [ArticleResult]) -> [Article] {

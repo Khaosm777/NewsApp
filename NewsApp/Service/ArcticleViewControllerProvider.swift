@@ -9,13 +9,13 @@ import UIKit
 
 struct ArcticleViewControllerProvider {
     
-    static var arcticleViewControllerProvider: UIViewController {
+    static func arcticleViewControllerProvider(imagesProvider: ImagesProvider) -> UIViewController {
         let isUpdateModeEnabled = UserDefaults.standard.bool(forKey: "actionSwitch")
         
         if isUpdateModeEnabled {
-            return NewsList2ViewController()
+            return CaruselNewsListViewController()
         } else {
-            return NewsListViewController()
+            return NewsListViewController(imagesProvider: imagesProvider)
         }
     }
 }

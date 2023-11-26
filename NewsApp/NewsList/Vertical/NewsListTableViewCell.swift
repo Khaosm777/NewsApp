@@ -11,7 +11,7 @@ final class NewsListTableViewCell: UITableViewCell {
     
     static let reuseId = "NewsListTableViewCell"
     
-    private let label: UILabel = {
+    private let title: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .boldSystemFont(ofSize: 16)
@@ -50,7 +50,7 @@ final class NewsListTableViewCell: UITableViewCell {
         super.prepareForReuse()
         
         productImageView.image = nil
-        label.text = nil
+        title.text = nil
     }
     
     private func setupLayour() {
@@ -69,11 +69,11 @@ final class NewsListTableViewCell: UITableViewCell {
     }
     
     private func setupLabel() {
-        contentView.addSubview(label)
+        contentView.addSubview(title)
         
-        label.topAnchor.constraint(equalTo: productImageView.topAnchor).isActive = true
-        label.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 16).isActive = true
-        label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32).isActive = true
+        title.topAnchor.constraint(equalTo: productImageView.topAnchor).isActive = true
+        title.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 16).isActive = true
+        title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32).isActive = true
     }
     
     private func setupLabelDate() {
@@ -84,7 +84,7 @@ final class NewsListTableViewCell: UITableViewCell {
     }
     
     func configure(arcticle: Article, publishedAt: String?, imagesProvider: ImagesProvider) {
-        label.text = arcticle.title
+        title.text = arcticle.title
         labelDate.text = publishedAt
         
         imagesProvider.image(for: arcticle.urlToImage) { [weak self] image in

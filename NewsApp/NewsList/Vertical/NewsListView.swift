@@ -9,7 +9,6 @@ import UIKit
 
 final class NewsListView: UIView {
     
-    let imagesProvider = ImagesProvider()
     let networkService = ArticleListNetworkService()
  
     var items: [Article] = []
@@ -34,32 +33,15 @@ final class NewsListView: UIView {
         backgroundColor = Colors.mainColor
         
         tableView.register(NewsListTableViewCell.self, forCellReuseIdentifier: NewsListTableViewCell.reuseId)
-        
-        tableView.dataSource = self
-        
+                
         setupTableView()
         setupActivityIndicator()
         
         activityIndicator.startAnimating()
-        
-        fetchData()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func fetchData() {
-        networkService.fetchData(page: page) { [weak self] articles in
-            guard let self = self else { return }
-
-            DispatchQueue.main.async {
-                self.items += articles
-                self.activityIndicator.stopAnimating()
-                self.tableView.reloadData()
-                self.tableView.tableFooterView = nil
-            }
-        }
     }
     
     func setupTableView() {
@@ -78,7 +60,7 @@ final class NewsListView: UIView {
         activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     
-    func setupViewIndicator() {
+    func tableLoadingView() -> UIView {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 100))
         
         let indicator = UIActivityIndicatorView()
@@ -91,10 +73,10 @@ final class NewsListView: UIView {
         
         indicator.startAnimating()
         
-        tableView.tableFooterView = view
+        return view
     }
     
-    private func publishDate(for dateResult: String?) -> String? {
+     func publishDate(for dateResult: String?) -> String? {
         guard let dataResult = dateResult else { return nil }
         
         guard let date = ISO8601DateFormatter().date(from: dataResult) else { return nil }
@@ -104,28 +86,4 @@ final class NewsListView: UIView {
         
         return formatter.string(from: date)
    }
-}
-
-extension NewsListView: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        items.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: NewsListTableViewCell.reuseId,
-            for: indexPath
-        ) as? NewsListTableViewCell else {
-            fatalError("Can not dequeue NewsListTableViewCell")
-        }
-        
-        let item = items[indexPath.row]
-        let publushedDate = publishDate(for: item.publishedAt)
-        
-        cell.configure(arcticle: item, publishedAt: publushedDate, imagesProvider: imagesProvider)
-        
-        cell.selectionStyle = .none
-        
-        return cell
-    }
 }

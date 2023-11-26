@@ -9,8 +9,10 @@ import UIKit
 
 final class MainTabBarController: UITabBarController {
     
+    private let imagesProvider = ImagesProvider()
+    
     private var newsListViewController: UINavigationController {
-        let vc = ArcticleViewControllerProvider.arcticleViewControllerProvider
+        let vc = ArcticleViewControllerProvider.arcticleViewControllerProvider(imagesProvider: imagesProvider)
         let navigationController = UINavigationController(rootViewController: vc)
         navigationController.tabBarItem = UITabBarItem(
             title: "Новости",
@@ -38,7 +40,7 @@ final class MainTabBarController: UITabBarController {
     }
     
     private var savedViewController: UINavigationController {
-        let vc = SavedViewController()
+        let vc = SavedViewController(imagesProvider: imagesProvider)
         let navigationController = UINavigationController(rootViewController: vc)
         navigationController.tabBarItem = UITabBarItem(
             title: "Сохраненные",
