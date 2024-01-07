@@ -28,3 +28,5 @@ final class FavoriteStorage {
         items.contains { $0 == element }
     }
 }
+
+

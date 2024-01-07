@@ -43,8 +43,7 @@ class NewsInfoView: UIView {
         label.font = .boldSystemFont(ofSize: 20)
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.backgroundColor = .systemGray4
-        label.layer.cornerRadius = 15
+        label.backgroundColor = .systemGray5
         label.clipsToBounds = true
         return label
     }()
@@ -176,8 +175,8 @@ class NewsInfoView: UIView {
         
         buttonSave.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: -12).isActive = true
         buttonSave.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -12).isActive = true
-        buttonSave.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        buttonSave.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        buttonSave.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        buttonSave.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
     func updateAddToFavoritesButton() {
         if isFavorite {

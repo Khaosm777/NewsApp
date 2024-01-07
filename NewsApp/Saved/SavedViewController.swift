@@ -65,21 +65,32 @@ extension SavedViewController: UITableViewDataSource {
         }
         
         let item = items[indexPath.row]
-//        let publushedDate = publishDate(for: item.publishedAt)
+        let publushedDate = publishDate(for: item.publishedAt)
         
-        cell.configure(arcticle: item, publishedAt: "No data", imagesProvider: imagesProvider)
+        cell.configure(arcticle: item, publishedAt: publushedDate, imagesProvider: imagesProvider)
         
         cell.selectionStyle = .none
         
         return cell
     }
+    
+    func publishDate(for dateResult: String?) -> String? {
+       guard let dataResult = dateResult else { return nil }
+       
+       guard let date = ISO8601DateFormatter().date(from: dataResult) else { return nil }
+       
+       let formatter = DateFormatter()
+       formatter.dateStyle = .medium
+       
+       return formatter.string(from: date)
+  }
 }
 
 extension SavedViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = items[indexPath.row]
         let image = imagesProvider.image(for: item.urlToImage)
-        let vc = NewsInfoViewController(item: item, image: image ?? UIImage())
+        let vc = NewsInfoViewController(item: item, image: (image ?? UIImage(named: "logo"))!)
         
         navigationController?.pushViewController(vc, animated: true)
     }

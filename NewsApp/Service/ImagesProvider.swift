@@ -27,7 +27,10 @@ final class ImagesProvider {
         let urlRequest = URLRequest(url: url)
          
         URLSession.shared.dataTask(with: urlRequest) { data, _, error in
-            guard let data = data, error == nil else { return }
+            guard let data = data, error == nil else {
+                completion(nil)
+                return
+            }
             
             let image = UIImage(data: data)
             

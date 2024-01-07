@@ -89,7 +89,11 @@ final class NewsListTableViewCell: UITableViewCell {
         
         imagesProvider.image(for: arcticle.urlToImage) { [weak self] image in
             DispatchQueue.main.async {
-                self?.productImageView.image = image
+                if let image = image {
+                    self?.productImageView.image = image
+                } else {
+                    self?.productImageView.image = UIImage(named: "logo")
+                }
             }
         }
     }
