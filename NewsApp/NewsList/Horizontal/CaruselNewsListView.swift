@@ -34,16 +34,14 @@ class CaruselNewsListView: UIView {
         super.init(frame: frame)
         
         backgroundColor = Colors.mainColor
-        
-        collectionView.dataSource = self
-        
-        activityIndicator.startAnimating()
+                
+//        activityIndicator.startAnimating()
         
         collectionView.register(CaruselCollectionViewCell.self, forCellWithReuseIdentifier: CaruselCollectionViewCell.reuseId)
         
         setupLayour()
-        
-        fetchData()
+                
+//        fetchData()
     }
     
     required init?(coder: NSCoder) {
@@ -71,35 +69,15 @@ class CaruselNewsListView: UIView {
         activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     
-    func fetchData() {
-        networkService.fetchData(q: "", page: page) { [weak self] articles in
-            guard let self = self else { return }
-
-            DispatchQueue.main.async {
-                self.items += articles
-                self.activityIndicator.stopAnimating()
-                self.collectionView.reloadData()
-            }
-        }
-    }
-}
-
-extension CaruselNewsListView: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        items.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: CaruselCollectionViewCell.reuseId,
-            for: indexPath
-        ) as? CaruselCollectionViewCell else {
-            fatalError( "Can not dequeue CaruselCollectionViewCell")
-        }
-        
-        let item = items[indexPath.item]
-        cell.configure(arcticle: item, imagesProvider: imagesProvider)
-        
-        return cell
-    }
+//    func fetchData() {
+//        networkService.fetchData(q: "", page: page) { [weak self] articles in
+//            guard let self = self else { return }
+//
+//            DispatchQueue.main.async {
+//                self.items += articles
+//                self.activityIndicator.stopAnimating()
+//                self.collectionView.reloadData()
+//            }
+//        }
+//    }
 }

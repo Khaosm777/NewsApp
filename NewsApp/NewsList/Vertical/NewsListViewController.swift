@@ -11,7 +11,7 @@ final class NewsListViewController: UIViewController {
     
     let mainView = NewsListView()
     let customNavigationLeftView = TaBarView()
-    var selectedCategory = Category.apple
+    var selectedCategory = Category.Bitcoin
     let imagesProvider: ImagesProvider
     
     weak var delegate: CategoryViewControllerDelegate?
