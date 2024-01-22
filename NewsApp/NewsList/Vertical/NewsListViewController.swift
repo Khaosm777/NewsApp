@@ -38,7 +38,7 @@ final class NewsListViewController: UIViewController {
         customNavigationLeftView.addGestureRecognizer(tapGesture)
         customNavigationLeftView.configure(title: selectedCategory.displayTitle)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: customNavigationLeftView)
         
         mainView.tableView.delegate = self
@@ -67,6 +67,12 @@ final class NewsListViewController: UIViewController {
         vc.modalPresentationStyle = .fullScreen
         vc.delegate = self
         present(vc, animated: true)
+    }
+    
+    @objc
+    private func searchButtonTapped() {
+        let vc = SearchResultViewController(items: mainView.items, imagesProvider: imagesProvider)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
