@@ -25,20 +25,6 @@ final class MainTabBarController: UITabBarController {
         return navigationController
     }
     
-    private var myNewsViewController: UINavigationController {
-        let vc = MyNewsViewController()
-        let navigationController = UINavigationController(rootViewController: vc)
-        navigationController.tabBarItem = UITabBarItem(
-            title: "Мои новости",
-            image: UIImage(systemName: "list.bullet.rectangle.portrait"),
-            selectedImage: UIImage(systemName: "list.bullet.rectangle.portrait.fill")
-        )
-        
-        navigationController.navigationBar.tintColor = .black
-
-        return navigationController
-    }
-    
     private var savedViewController: UINavigationController {
         let vc = SavedViewController(imagesProvider: imagesProvider)
         let navigationController = UINavigationController(rootViewController: vc)
@@ -70,7 +56,7 @@ final class MainTabBarController: UITabBarController {
     init() {
         super.init(nibName: nil, bundle: nil)
                    
-        viewControllers = [newsListViewController, myNewsViewController, savedViewController, settingViewController]
+        viewControllers = [newsListViewController, savedViewController, settingViewController]
         
         tabBar.tintColor = .red
         tabBar.backgroundColor = .white

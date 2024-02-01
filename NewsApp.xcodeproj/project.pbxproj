@@ -16,8 +16,6 @@
 		84C466522AF92166003DF1CA /* NewsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C466512AF92166003DF1CA /* NewsListView.swift */; };
 		84C466542AF92660003DF1CA /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C466532AF92660003DF1CA /* Colors.swift */; };
 		84C466562AF927C1003DF1CA /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C466552AF927C1003DF1CA /* MainTabBarController.swift */; };
-		84C4665C2AF92D46003DF1CA /* MyNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4665B2AF92D46003DF1CA /* MyNewsViewController.swift */; };
-		84C4665E2AF92D7D003DF1CA /* MyNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4665D2AF92D7D003DF1CA /* MyNewsView.swift */; };
 		84C466602AF92D99003DF1CA /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4665F2AF92D99003DF1CA /* SavedViewController.swift */; };
 		84C466622AF92DB0003DF1CA /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C466612AF92DB0003DF1CA /* SavedView.swift */; };
 		84C466642AF92DCB003DF1CA /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C466632AF92DCB003DF1CA /* SettingViewController.swift */; };
@@ -56,8 +54,6 @@
 		84C466512AF92166003DF1CA /* NewsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListView.swift; sourceTree = "<group>"; };
 		84C466532AF92660003DF1CA /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		84C466552AF927C1003DF1CA /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		84C4665B2AF92D46003DF1CA /* MyNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNewsViewController.swift; sourceTree = "<group>"; };
-		84C4665D2AF92D7D003DF1CA /* MyNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNewsView.swift; sourceTree = "<group>"; };
 		84C4665F2AF92D99003DF1CA /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
 		84C466612AF92DB0003DF1CA /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
 		84C466632AF92DCB003DF1CA /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -125,7 +121,6 @@
 				8436B8E42B5EEFAE00EBD135 /* Search */,
 				84C4665A2AF92C9B003DF1CA /* Setting */,
 				84C466592AF92C85003DF1CA /* Saved */,
-				84C466582AF92C70003DF1CA /* MyNews */,
 				84C4664E2AF8F2B3003DF1CA /* NewsList */,
 				84C466702AFC0AFF003DF1CA /* Fonts and Color */,
 				84C4667A2AFD518B003DF1CA /* Service */,
@@ -147,15 +142,6 @@
 				84D5A4512B0F71F200AF3ABB /* Category */,
 			);
 			path = NewsList;
-			sourceTree = "<group>";
-		};
-		84C466582AF92C70003DF1CA /* MyNews */ = {
-			isa = PBXGroup;
-			children = (
-				84C4665B2AF92D46003DF1CA /* MyNewsViewController.swift */,
-				84C4665D2AF92D7D003DF1CA /* MyNewsView.swift */,
-			);
-			path = MyNews;
 			sourceTree = "<group>";
 		};
 		84C466592AF92C85003DF1CA /* Saved */ = {
@@ -341,12 +327,10 @@
 				84D5A4502B0CE0D900AF3ABB /* TaBarView.swift in Sources */,
 				84C4666A2AF96CFE003DF1CA /* NewsListTableViewCell.swift in Sources */,
 				84D5A4592B11258C00AF3ABB /* Category.swift in Sources */,
-				84C4665E2AF92D7D003DF1CA /* MyNewsView.swift in Sources */,
 				84C466502AF8F326003DF1CA /* NewsListViewController.swift in Sources */,
 				84C466772AFC0F75003DF1CA /* Fonts.swift in Sources */,
 				84C466602AF92D99003DF1CA /* SavedViewController.swift in Sources */,
 				84C8B17C2B13720000F8D26A /* FavoriteStorage.swift in Sources */,
-				84C4665C2AF92D46003DF1CA /* MyNewsViewController.swift in Sources */,
 				84D5A4532B0F728900AF3ABB /* CategoryViewController.swift in Sources */,
 				84D5A4572B0F72DE00AF3ABB /* CategoryTableViewCell.swift in Sources */,
 				84C466562AF927C1003DF1CA /* MainTabBarController.swift in Sources */,
@@ -507,7 +491,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -539,7 +523,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
