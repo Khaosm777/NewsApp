@@ -7,14 +7,14 @@
 
 import UIKit
 
-class SavedViewController: UIViewController {
+final class SavedViewController: UIViewController {
     
     private var items: [Article] {
         FavoriteStorage.shared.items
     }
     
-    let mainView = SavedView()
-    let imagesProvider: ImagesProvider
+    private let mainView = SavedView()
+    private let imagesProvider: ImagesProvider
     
     init(imagesProvider: ImagesProvider) {
         self.imagesProvider = imagesProvider
@@ -46,7 +46,7 @@ class SavedViewController: UIViewController {
     }
     
     @objc
-    func favoriteListChanged() {
+    private func favoriteListChanged() {
         mainView.tableView.reloadData()
     }
 }

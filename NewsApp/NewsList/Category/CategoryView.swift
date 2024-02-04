@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CategoryView: UIView {
+final class CategoryView: UIView {
     
     var selectedItem = Category.apple
     

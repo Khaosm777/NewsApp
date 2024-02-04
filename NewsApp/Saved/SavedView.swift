@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SavedView: UIView {
+final class SavedView: UIView {
     
     let tableView: UITableView = {
         let tv = UITableView()

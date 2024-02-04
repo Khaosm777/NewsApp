@@ -7,9 +7,11 @@
 
 import UIKit
 
-class SettingView: UIView {
+final class SettingView: UIView {
     
-    let label: UILabel = {
+//MARK: - UI Elements
+    
+    private let label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Переключение экрана"
@@ -22,28 +24,21 @@ class SettingView: UIView {
         return switch1
     }()
     
+//MARK: - Life cycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         backgroundColor = Colors.mainColor
         
         setupLaout()
-        
-//        let isActionSwitchOn = UserDefaults.standard.bool(forKey: "actionSwitch")
-//        
-//        switch1.isOn = isActionSwitchOn
-        
-//        switch1.addTarget(self, action: #selector(actionSwitch), for: .valueChanged)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    @objc
-//    private func actionSwitch() {
-//        UserDefaults.standard.set(switch1.isOn, forKey: "actionSwitch")
-//    }
+//MARK: - Methods
     
     private func setupLaout() {
         setupLabel()

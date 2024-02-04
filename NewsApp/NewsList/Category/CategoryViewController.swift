@@ -11,7 +11,7 @@ protocol CategoryViewControllerDelegate: AnyObject {
     func doneButtonTapped(selectedCategory: Category)
 }
 
-class CategoryViewController: UIViewController {
+final class CategoryViewController: UIViewController {
     
     weak var delegate: CategoryViewControllerDelegate?
     

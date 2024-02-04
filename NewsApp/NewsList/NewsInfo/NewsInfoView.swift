@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewsInfoView: UIView {
+final class NewsInfoView: UIView {
     
     var isFavorite = false {
         didSet {

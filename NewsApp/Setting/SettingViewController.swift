@@ -9,7 +9,7 @@ import UIKit
 
 final class SettingViewController: UIViewController {
     
-    let newView = SettingView()
+    private let newView = SettingView()
     
     override func loadView() {
         view.self = newView

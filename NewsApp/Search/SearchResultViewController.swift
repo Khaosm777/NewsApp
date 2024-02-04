@@ -7,18 +7,20 @@
 
 import UIKit
 
-class SearchResultViewController: UIViewController {
+final class SearchResultViewController: UIViewController {
+
+//MARK: - UI Elements
     
-    var itemsAll: [Article] = []
-    let imagesProvider: ImagesProvider
-    var isSearching = false
-    var searchedItems: [Article] = []
+    private var itemsAll: [Article] = []
+    private let imagesProvider: ImagesProvider
+    private var isSearching = false
+    private var searchedItems: [Article] = []
     
-    var items: [Article] {
+    private var items: [Article] {
         isSearching ? searchedItems : itemsAll
     }
     
-    let tableView: UITableView = {
+    private let tableView: UITableView = {
         let tv = UITableView()
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.rowHeight = 120
@@ -32,6 +34,7 @@ class SearchResultViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
+//MARK: - Life cycle
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -57,7 +60,9 @@ class SearchResultViewController: UIViewController {
         tableView.register(NewsListTableViewCell.self, forCellReuseIdentifier: NewsListTableViewCell.reuseId)
     }
     
-    func setupTableView() {
+//MARK: - Methods
+    
+    private func setupTableView() {
         view.addSubview(tableView)
         
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -92,6 +97,8 @@ extension SearchResultViewController: UITableViewDataSource {
     }
 }
 
+//MARK: - UITableViewDelegate
+
 extension SearchResultViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = items[indexPath.row]
@@ -101,6 +108,8 @@ extension SearchResultViewController: UITableViewDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
+
+//MARK: - UISearchResultsUpdating
 
 extension SearchResultViewController: UISearchResultsUpdating {
     
@@ -115,6 +124,8 @@ extension SearchResultViewController: UISearchResultsUpdating {
         tableView.reloadData()
     }
 }
+
+//MARK: - UISearchBarDelegate
 
 extension SearchResultViewController: UISearchBarDelegate {
     

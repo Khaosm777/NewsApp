@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CaruselCollectionViewCell: UICollectionViewCell {
+final class CaruselCollectionViewCell: UICollectionViewCell {
     
     static let reuseId = "CaruselCollectionViewCell"
     

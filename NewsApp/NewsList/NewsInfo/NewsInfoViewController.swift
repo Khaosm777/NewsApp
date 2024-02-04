@@ -49,14 +49,14 @@ final class NewsInfoViewController: UIViewController {
     }
     
     @objc
-    func saveTapped() {
+    private func saveTapped() {
         mainView.isFavorite = !mainView.isFavorite
         mainView.updateAddToFavoritesButton()
         FavoriteStorage.shared.handle(item)
     }
     
     @objc
-    func shareButtonTapped() {
+    private func shareButtonTapped() {
         let vc = UIActivityViewController(activityItems: ["one"], applicationActivities: nil)
         present(vc, animated: true)
     }

@@ -7,11 +7,11 @@
 
 import UIKit
 
-class CaruselNewsListViewController: UIViewController {
+final class CaruselNewsListViewController: UIViewController {
     
-    let customNavigationLeftView = TaBarView()
-    var selectedCategory = Category.apple
-    let mainView = CaruselNewsListView()
+    private let customNavigationLeftView = TaBarView()
+    private var selectedCategory = Category.apple
+    private let mainView = CaruselNewsListView()
     
     override func loadView() {
         view = mainView
@@ -35,7 +35,7 @@ class CaruselNewsListViewController: UIViewController {
         fetchData()
     }
     
-    func fetchData() {
+    private func fetchData() {
         mainView.networkService.fetchData(q: selectedCategory.requestTitle,page: mainView.page) { [weak self] articles in
             guard let self = self else { return }
             
@@ -48,7 +48,7 @@ class CaruselNewsListViewController: UIViewController {
     }
     
     @objc
-    func tappedCategoryView() {
+    private func tappedCategoryView() {
         let vc = CategoryViewController(selectedCategory: selectedCategory)
         vc.modalPresentationStyle = .fullScreen
         vc.delegate = self

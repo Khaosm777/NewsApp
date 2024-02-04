@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TaBarView: UICollectionViewCell {
+final class TaBarView: UICollectionViewCell {
     
     let imageViewLeft: UIImageView = {
         let iv = UIImageView()

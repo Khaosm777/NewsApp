@@ -10,7 +10,7 @@ import UIKit
 final class NewsListView: UIView {
     
     let networkService = ArticleListNetworkService()
- 
+    
     var items: [Article] = []
     var page = 1
     
@@ -33,7 +33,7 @@ final class NewsListView: UIView {
         backgroundColor = Colors.mainColor
         
         tableView.register(NewsListTableViewCell.self, forCellReuseIdentifier: NewsListTableViewCell.reuseId)
-                
+        
         setupTableView()
         setupActivityIndicator()
         
@@ -44,7 +44,7 @@ final class NewsListView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupTableView() {
+    private func setupTableView() {
         addSubview(tableView)
         
         tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -53,7 +53,7 @@ final class NewsListView: UIView {
         tableView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
     }
     
-    func setupActivityIndicator() {
+    private func setupActivityIndicator() {
         addSubview(activityIndicator)
         
         activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
@@ -76,7 +76,7 @@ final class NewsListView: UIView {
         return view
     }
     
-     func publishDate(for dateResult: String?) -> String? {
+    func publishDate(for dateResult: String?) -> String? {
         guard let dataResult = dateResult else { return nil }
         
         guard let date = ISO8601DateFormatter().date(from: dataResult) else { return nil }
@@ -85,5 +85,5 @@ final class NewsListView: UIView {
         formatter.dateStyle = .medium
         
         return formatter.string(from: date)
-   }
+    }
 }

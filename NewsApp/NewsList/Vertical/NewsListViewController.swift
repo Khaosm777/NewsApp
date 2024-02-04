@@ -9,12 +9,16 @@ import UIKit
 
 final class NewsListViewController: UIViewController {
     
-    let mainView = NewsListView()
-    let customNavigationLeftView = TaBarView()
-    var selectedCategory = Category.Bitcoin
-    let imagesProvider: ImagesProvider
+    //MARK: - UI Elements
+    
+    private let mainView = NewsListView()
+    private let customNavigationLeftView = TaBarView()
+    private var selectedCategory = Category.Bitcoin
+    private let imagesProvider: ImagesProvider
     
     weak var delegate: CategoryViewControllerDelegate?
+    
+    //MARK: - Life cicle
     
     init(imagesProvider: ImagesProvider) {
         self.imagesProvider = imagesProvider
@@ -29,12 +33,12 @@ final class NewsListViewController: UIViewController {
     override func loadView() {
         view = mainView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tappedCategoryView))
-
+        
         customNavigationLeftView.addGestureRecognizer(tapGesture)
         customNavigationLeftView.configure(title: selectedCategory.displayTitle)
         
@@ -47,10 +51,12 @@ final class NewsListViewController: UIViewController {
         fetchData()
     }
     
-    func fetchData() {
+    //MARK: - Methods
+    
+    private func fetchData() {
         mainView.networkService.fetchData(q: selectedCategory.requestTitle,page: mainView.page) { [weak self] articles in
             guard let self = self else { return }
-
+            
             DispatchQueue.main.async {
                 self.mainView.items += articles
                 self.mainView.activityIndicator.stopAnimating()
@@ -62,7 +68,7 @@ final class NewsListViewController: UIViewController {
     }
     
     @objc
-    func tappedCategoryView() {
+    private func tappedCategoryView() {
         let vc = CategoryViewController(selectedCategory: selectedCategory)
         vc.modalPresentationStyle = .fullScreen
         vc.delegate = self
@@ -75,6 +81,8 @@ final class NewsListViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
+
+//MARK: - UITableViewDelegate
 
 extension NewsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -95,6 +103,8 @@ extension NewsListViewController: UITableViewDelegate {
     }
 }
 
+//MARK: - CategoryViewControllerDelegate
+
 extension NewsListViewController: CategoryViewControllerDelegate {
     func doneButtonTapped(selectedCategory: Category) {
         
@@ -109,11 +119,13 @@ extension NewsListViewController: CategoryViewControllerDelegate {
     }
 }
 
+//MARK: - UITableViewDataSource
+
 extension NewsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         mainView.items.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: NewsListTableViewCell.reuseId,
